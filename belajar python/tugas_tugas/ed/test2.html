@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <title>Document</title>
+    <py-script>
+        def new(url, basic=True, gdata=False, size=False,
+        callback=None, ydl_opts=None):
+    """ Return a new pafy instance given a url or video id.
+
+    NOTE: The signature argument has been deprecated and now has no effect,
+        it will be removed in a future version.
+
+    Optional arguments:
+        basic - fetch basic metadata and streams
+        gdata - fetch gdata info (upload date, description, category)
+        size - fetch the size of each stream (slow)(decrypts urls if needed)
+        callback - a callback function to receive status strings
+
+    If any of the first three above arguments are False, those data items will
+    be fetched only when first called for.
+
+    The defaults are recommended for most cases. If you wish to create
+    many video objects at once, you may want to set basic to False, eg:
+
+        video = pafy.new(basic=False)
+
+    This will be quick because no http requests will be made on initialisation.
+
+    Setting size to True will override the basic argument and force basic data
+    to be fetched too (basic data is required to obtain Stream objects).
+
+    """
+    global Pafy
+    if Pafy is None:
+        if backend == "internal":
+           from .backend_internal import InternPafy as Pafy
+        else:
+           from .backend_youtube_dl import YtdlPafy as Pafy
+
+    return Pafy(url, basic, gdata, size, callback, ydl_opts=ydl_opts)
+
+        
+
+    </py-script>
+</head>
+<body>
+    <h1>test 2</h1>
+
+</body>
+</html>
